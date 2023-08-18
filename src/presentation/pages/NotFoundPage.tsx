@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function NotFoundPage() {
+export function NotFoundPage() {
   return (
     <div>
       <h2>Nothing to see here!</h2>

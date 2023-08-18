@@ -1,12 +1,8 @@
 import * as React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { useAuth } from "../pages/auth/hooks/useAuth";
-
-import { Layout } from "../components/layout";
-import LoginPage from "../pages/auth/loginPage";
-import DashboardPage from "../pages/admin/dashboardPage";
-import LandingPage from "../pages/landing/landingPage";
-import NotFoundPage from "../pages/notFoundPage";
+import { DashboardPage, LandingPage, LoginPage, NotFoundPage } from "@presentation/pages";
+import { Layout } from "@presentation/components";
 
 //const LandingPage = React.lazy(() =>import("../pages/landing/ladingPage"));
 //const DashboardPage = React.lazy(() => import("../pages/admin/dashboardPage"));

@@ -5,7 +5,7 @@ import {
   useNavigation,
 } from "react-router-dom";
 
-export default function LoginPage() {
+export function LoginPage() {
   let location = useLocation();
   let params = new URLSearchParams(location.search);
   let from = params.get("from") || "/";
