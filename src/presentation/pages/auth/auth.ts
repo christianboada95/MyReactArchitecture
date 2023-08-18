@@ -1,13 +1,24 @@
-const fakeAuthProvider = {
+interface AuthProvider {
+  isAuthenticated: boolean;
+  username: null | string;
+  signin(username: string): Promise<void>;
+  signout(): Promise<void>;
+}
+
+/**
+ * This represents some generic auth provider API, like Firebase.
+ */
+export const fakeAuthProvider: AuthProvider = {
   isAuthenticated: false,
-  signin(callback: VoidFunction) {
+  username: null,
+  async signin(username: string) {
+    await new Promise((r) => setTimeout(r, 500)); // fake delay
     fakeAuthProvider.isAuthenticated = true;
-    setTimeout(callback, 100); // fake async
+    fakeAuthProvider.username = username;
   },
-  signout(callback: VoidFunction) {
+  async signout() {
+    await new Promise((r) => setTimeout(r, 500)); // fake delay
     fakeAuthProvider.isAuthenticated = false;
-    setTimeout(callback, 100);
+    fakeAuthProvider.username = "";
   },
 };
-
-export { fakeAuthProvider };

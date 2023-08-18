@@ -1,24 +1,25 @@
-import { useNavigate } from "react-router-dom";
+import { useFetcher, useNavigate, useRouteLoaderData } from "react-router-dom";
 import { useAuth } from "../pages/auth/hooks/useAuth";
 
 export function AuthStatus() {
-  let auth = useAuth();
-  let navigate = useNavigate();
+  // Get our logged in user, if they exist, from the root route loader data
+  let { user } = useRouteLoaderData("root") as { user: string | null };
+  let fetcher = useFetcher();
 
-  if (!auth.user) {
+  if (!user) {
     return <p>You are not logged in.</p>;
   }
 
+  let isLoggingOut = fetcher.formData != null;
+
   return (
-    <p>
-      Welcome {auth.user}!{" "}
-      <button
-        onClick={() => {
-          auth.signout(() => navigate("/"));
-        }}
-      >
-        Sign out
-      </button>
-    </p>
+    <div>
+      <p>Welcome {user}!</p>
+      <fetcher.Form method="post" action="/logout">
+        <button type="submit" disabled={isLoggingOut}>
+          {isLoggingOut ? "Signing out..." : "Sign out"}
+        </button>
+      </fetcher.Form>
+    </div>
   );
 }

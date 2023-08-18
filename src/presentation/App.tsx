@@ -1,14 +1,13 @@
 import './styles/App.css'
 import { NextUIProvider } from '@nextui-org/react'
-import { AuthProvider } from './pages/auth/authProvider'
-import AppRoutes from './routes/router'
+import { RouterProvider } from 'react-router-dom'
+import { appRouter } from './routes/router'
 
 function App() {
+  const router = appRouter();
   return (
     <NextUIProvider>
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
+      <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
     </NextUIProvider>
   )
 }
