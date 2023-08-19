@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { AuthStatus } from "./authStatus";
+import { AuthStatus } from "./AuthStatus";
 
 export function Layout() {
   return (
@@ -13,7 +13,7 @@ export function Layout() {
           <Link to="/">Public Page</Link>
         </li>
         <li>
-          <Link to="/dashboard">Protected Page</Link>
+          <Link to="/admin">Protected Page</Link>
         </li>
       </ul>
 

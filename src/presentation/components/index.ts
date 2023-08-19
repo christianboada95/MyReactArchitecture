@@ -1,2 +1,2 @@
-export * from './authStatus';
+export * from './AuthStatus';
 export * from './layout';

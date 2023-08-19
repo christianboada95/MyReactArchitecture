@@ -1,9 +1,9 @@
 import { useFetcher, useNavigate, useRouteLoaderData } from "react-router-dom";
-import { useAuth } from "../pages/auth/hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 export function AuthStatus() {
   // Get our logged in user, if they exist, from the root route loader data
-  let { user } = useRouteLoaderData("root") as { user: string | null };
+  let { user } = useRouteLoaderData("auth") as { user: string | null };
   let fetcher = useFetcher();
 
   if (!user) {
@@ -15,7 +15,7 @@ export function AuthStatus() {
   return (
     <div>
       <p>Welcome {user}!</p>
-      <fetcher.Form method="post" action="/logout">
+      <fetcher.Form method="post" action="/auth/logout">
         <button type="submit" disabled={isLoggingOut}>
           {isLoggingOut ? "Signing out..." : "Sign out"}
         </button>

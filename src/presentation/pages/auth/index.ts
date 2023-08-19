@@ -1,3 +1,3 @@
 export * from './auth';
-export * from './hooks';
+export * from './AuthRouter';
 export * from './LoginPage';

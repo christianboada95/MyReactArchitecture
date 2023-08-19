@@ -1,5 +1,5 @@
 import { LoaderFunctionArgs, redirect } from "react-router-dom";
-import { fakeAuthProvider } from "../auth";
+import { fakeAuthProvider } from "../pages/auth/auth";
 
 export function useAuth() {
 
@@ -27,7 +27,7 @@ export function useAuth() {
     }
   
     let redirectTo = formData.get("redirectTo") as string | null;
-    return redirect(redirectTo || "/");
+    return redirect(redirectTo || "/admin");
   }
 
   const logoutAction = async () => {
@@ -38,7 +38,7 @@ export function useAuth() {
 
   const loginLoader = async () => {
     if (fakeAuthProvider.isAuthenticated) {
-      return redirect("/");
+      return redirect("/admin");
     }
     return null;
   }
@@ -50,7 +50,7 @@ export function useAuth() {
     if (!fakeAuthProvider.isAuthenticated) {
       let params = new URLSearchParams();
       params.set("from", new URL(request.url).pathname);
-      return redirect("/login?" + params.toString());
+      return redirect("/auth/login?" + params.toString());
     }
     return null;
   }
