@@ -1,10 +1,10 @@
 import './styles/App.css'
 import { NextUIProvider } from '@nextui-org/react'
 import { RouterProvider } from 'react-router-dom'
-import { appRouter } from './routes/router'
+import  AppRouter  from '@presentation/routes/App.router'
 import { Provider } from 'react-redux';
 import store from '@domain/stores/app.store'
-import { ApplicationProvider } from './components';
+import { ApplicationProvider } from '@presentation/components';
 import { charactersRepository } from '@infrastructure/repositories';
 
 const createDependencies = () => ({
@@ -12,7 +12,7 @@ const createDependencies = () => ({
 })
 
 function App() {
-  const router = appRouter();
+  const router = AppRouter();
   return (
     <NextUIProvider>
       <Provider store={store}>

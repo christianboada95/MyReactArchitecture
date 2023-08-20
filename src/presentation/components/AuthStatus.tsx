@@ -1,16 +1,15 @@
-import { useFetcher, useNavigate, useRouteLoaderData } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import { useFetcher, useRouteLoaderData } from "react-router-dom";
 
 export function AuthStatus() {
   // Get our logged in user, if they exist, from the root route loader data
-  let { user } = useRouteLoaderData("auth") as { user: string | null };
-  let fetcher = useFetcher();
+  const { user } = useRouteLoaderData("auth") as { user: string | null };
+  const fetcher = useFetcher();
 
   if (!user) {
     return <p>You are not logged in.</p>;
   }
 
-  let isLoggingOut = fetcher.formData != null;
+  const isLoggingOut = fetcher.formData != null;
 
   return (
     <div>
@@ -21,5 +20,7 @@ export function AuthStatus() {
         </button>
       </fetcher.Form>
     </div>
-  );
+  ); 
 }
+
+export default AuthStatus
