@@ -40,5 +40,5 @@ export function AuthRouter() {
     },
   ];
 
-  return router;
+  return routes;
 }
