@@ -1,5 +1,5 @@
 import { Character } from "@domain/entities";
-import { CharactersRepository } from "@domain/repositories";
+import { CharactersRepository } from "@domain/contracts";
 import { characterAdapter } from "@infrastructure/adapters";
 
 const PATH = "https://rickandmortyapi.com/api/character";

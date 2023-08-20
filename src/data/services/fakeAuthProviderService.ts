@@ -1,5 +1,5 @@
+import { AuthProviderService } from "@domain/contracts";
 import { User } from "@domain/entities";
-import { UserStore } from "@domain/stores";
 
 /**
  * This represents some generic auth provider API, like Firebase.
@@ -14,7 +14,7 @@ const UserEmptyState: User = {
   }
 };
 
-export const fakeAuthProvider: UserStore = {
+export const fakeAuthProvider: AuthProviderService = {
   // State
   isAuthenticated: false,
   user: UserEmptyState,

@@ -1,6 +1,6 @@
 import { findCharacterByIdUseCase } from "@application/rickandmorty/findCharacterByIdUseCase";
 import { getAllCharactersUseCase } from "@application/rickandmorty/getAllCharactersUseCase";
-import { CharactersRepository } from "@domain/repositories";
+import { CharactersRepository } from "@domain/contracts";
 import { ApplicationContext } from "@infrastructure/contexts";
 
 interface Props {
@@ -23,3 +23,5 @@ export const ApplicationProvider = ({ children, dependencies }: Props) => {
     </ApplicationContext.Provider>
   );
 };
+
+export default ApplicationProvider

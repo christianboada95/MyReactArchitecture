@@ -1,6 +1,6 @@
-import type { User } from "@domain/entities";
+import { User } from "@domain/entities";
 
-interface UserStore {
+interface AuthProviderService {
   // State
   user: User | undefined;
   isAuthenticated: boolean;
@@ -10,6 +10,4 @@ interface UserStore {
   signout(): Promise<void>;
 }
 
-
-export type { UserStore }
-
+export type { AuthProviderService }

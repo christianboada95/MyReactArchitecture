@@ -1,5 +1,5 @@
 import { Character } from "@domain/entities";
-import { CharactersRepository } from "@domain/repositories";
+import { CharactersRepository } from "@domain/contracts";
 //import { charactersRepository } from "@infrastructure/repositories";
 
 export const findCharacterByIdUseCase = (repository: CharactersRepository) => async (id: number): Promise<Character> => {
