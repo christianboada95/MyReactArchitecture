@@ -1,43 +1,36 @@
 import {
+  Form,
+  useActionData,
   useLocation,
-  useNavigate,
+  useNavigation,
 } from "react-router-dom";
-import { useAuth } from "./hooks/useAuth";
 
-export default function LoginPage() {
-  let navigate = useNavigate();
+export function LoginPage() {
   let location = useLocation();
-  let auth = useAuth();
+  let params = new URLSearchParams(location.search);
+  let from = params.get("from") || "/";
 
-  let from = location.state?.from?.pathname || "/";
+  let navigation = useNavigation();
+  let isLoggingIn = navigation.formData?.get("username") != null;
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    let formData = new FormData(event.currentTarget);
-    let username = formData.get("username") as string;
-
-    auth.signin(username, () => {
-      // Send them back to the page they tried to visit when they were
-      // redirected to the login page. Use { replace: true } so we don't create
-      // another entry in the history stack for the login page.  This means that
-      // when they get to the protected page and click the back button, they
-      // won't end up back on the login page, which is also really nice for the
-      // user experience.
-      navigate(from, { replace: true });
-    });
-  }
+  let actionData = useActionData() as { error: string } | undefined;
 
   return (
     <div>
       <p>You must log in to view the page at {from}</p>
 
-      <form onSubmit={handleSubmit}>
+      <Form method="post" replace>
+        <input type="hidden" name="redirectTo" value={from} />
         <label>
-          Username: <input name="username" type="text" />
+          Username: <input name="username" />
         </label>{" "}
-        <button type="submit">Login</button>
-      </form>
+        <button type="submit" disabled={isLoggingIn}>
+          {isLoggingIn ? "Logging in..." : "Login"}
+        </button>
+        {actionData && actionData.error ? (
+          <p style={{ color: "red" }}>{actionData.error}</p>
+        ) : null}
+      </Form>
     </div>
   );
 }

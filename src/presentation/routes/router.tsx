@@ -1,25 +1,19 @@
-import { Route, Routes } from "react-router-dom";
-import Layout from "../components/layout";
-import LandingPage from "../pages/landing/ladingPage";
-import LoginPage from "../pages/auth/loginPage";
-import ProtectedPage from "../pages/admin/dashboardPage";
-import { RequireAuth } from "../pages/auth/authProvider";
 
-export default function AppRoutes() {
-  return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route
-          path="/protected"
-          element={
-            <RequireAuth>
-              <ProtectedPage />
-            </RequireAuth>
-          }
-        />
-      </Route>
-    </Routes>
-  )
+import { createBrowserRouter } from "react-router-dom";
+import { useAuth } from "@presentation/hooks";
+import { AuthRouter, DashboardRouter, LandingPage, NotFoundPage } from "@presentation/pages";
+
+export function appRouter() {
+  let { protectedLoader, userLoader } = useAuth();
+  let dashboardRouter = DashboardRouter()
+  let authRouter = AuthRouter()
+
+  const router = createBrowserRouter([
+    { id: "root", path: "/", Component: LandingPage },
+    { id: "auth", path: "/auth", loader: userLoader, children: authRouter },
+    { id: "admin", path: "/admin", loader: protectedLoader, children: dashboardRouter },
+    { path: "*", element: <NotFoundPage />, },
+  ]);
+
+  return router;
 }

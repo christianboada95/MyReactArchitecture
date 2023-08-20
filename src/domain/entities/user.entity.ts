@@ -21,8 +21,3 @@ export interface Role {
   description: string;
   type: string;
 }
-
-export interface Token {
-  jwt: string;
-  user?: User;
-}

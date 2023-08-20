@@ -1,9 +1,11 @@
-import { Link, Outlet, useFetcher, useRouteLoaderData } from "react-router-dom";
-import { AuthStatus } from "./authStatus";
+import { Link, Outlet } from "react-router-dom";
+import { AuthStatus } from "./AuthStatus";
 
-export default function Layout() {
+export function Layout() {
   return (
     <div>
+      <h1>Auth Example using RouterProvider</h1>
+
       <AuthStatus />
 
       <ul>
@@ -11,7 +13,7 @@ export default function Layout() {
           <Link to="/">Public Page</Link>
         </li>
         <li>
-          <Link to="/protected">Protected Page</Link>
+          <Link to="/admin">Protected Page</Link>
         </li>
       </ul>
 
