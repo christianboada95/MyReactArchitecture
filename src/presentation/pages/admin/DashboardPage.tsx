@@ -1,3 +1,5 @@
-export default function DashboardPage() {
-  return <h3>Protected</h3>;
+export function DashboardPage() {
+  return <h3>DashboardPage</h3>;
 }
+
+export default DashboardPage

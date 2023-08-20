@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 export function DashboardCharacter() {
-  let params = useParams();
-  let navigate = useNavigate();
+  const params = useParams();
+  const navigate = useNavigate();
   const { findCharacterById } = useApplication();
   const [character, setCharacter] = useState<Character>();
 
   useEffect(() => {
     findCharacterById(Number(params.id)).then(setCharacter)
-  }, [findCharacterById, setCharacter])
+  }, [findCharacterById, params.id, setCharacter])
 
   return (
     <section className="gap-2 grid grid-cols-2 sm:grid-cols-4">

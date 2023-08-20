@@ -1,7 +1,7 @@
-import { Character } from "@domain/entities";
+import { useEffect, useState } from "react";
 import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 import { useApplication } from "@presentation/hooks"
-import { useEffect, useState } from "react";
+import { Character } from "@domain/entities";
 
 export function DashboardIndex() {
   const { getAllCharacters } = useApplication();

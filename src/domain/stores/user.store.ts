@@ -1,6 +1,4 @@
 import type { User } from "@domain/entities";
-import { userSlice } from "@domain/states/user.state";
-import { configureStore } from "@reduxjs/toolkit";
 
 interface UserStore {
   // State
